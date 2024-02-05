@@ -1,0 +1,47 @@
+/* address 클래스에 대한 스타일 수정 */
+.footer_menu .address {
+    margin-top: 20px; /* 상단 여백을 추가하여 겹침 방지 */
+    z-index: 99; /* z-index 설정으로 겹침 방지 */
+}
+
+/* 기존의 footer 스타일 */
+#footer {
+    width: 100%;
+    background: #363636;
+    padding-top: 50px; /* 상단 여백 조절 */
+    height:250px;
+}
+
+#footer .footerIns {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 14px;
+    font-weight: 100;
+    color: #cccccc;
+    position: relative;
+    text-align: center;
+    padding-top: 49px;
+}
+.footer_menu{
+	text-align:center;
+}
+.footer_menu li{
+	display:inline-block;
+	margin: 0 13px;
+	line-height:31px;
+}
+.footer_menu li a{
+	color:#bcclcc;
+	font-size:15px;
+}
+.address span{
+	display:inline-block;
+	line-height:36px;
+	padding:0 30px 17px;
+	border-bottom: 1px solid #424242;
+}
+.address em{
+	font-style:normal;
+	displaY:inline-block;
+	margin-left:8px;
+}

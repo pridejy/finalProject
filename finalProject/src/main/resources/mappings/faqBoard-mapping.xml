@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="faqBoardDAO">
+	<insert id="insertfaqBoard" parameterType="faqBoard">
+		<![CDATA[
+			INSERT INTO FAQBOARD(TITLE, CONTENT, regDate) VALUES (#{title}, #{content}, CURDATE())
+		]]>
+	</insert>
+	<update id="updatefaqBoard">
+		<![CDATA[
+			UPDATE BOARD SET TITLE=#{title}, CONTENT=#{content} WHERE SEQ=#{seq}
+		]]>
+	</update>
+	<delete id="deletefaqBoard">
+		<![CDATA[
+			DELETE FROM FAQBAORD WHERE SEQ=#{seq}
+		]]>
+	</delete>
+	<select id="getfaqBoard" resultType="faqBoard">
+		<![CDATA[
+			SELECT * FROM FAQBOARD WHERE SEQ=#{seq}
+		]]>
+	</select>
+	<select id="getfaqBoardList" resultType="faqBoard">
+		SELECT * FROM faqBoard WHERE 1 = 1
+		<if test ="searchCondition == 'TITLE'">
+			AND TITLE LIKE CONCAT ('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'CONTENT'">
+			AND CONTENT LIKE CONCAT ('%', #{searchKeyword}, '%')
+		</if>
+		ORDER BY SEQ DESC
+	</select>
+</mapper>

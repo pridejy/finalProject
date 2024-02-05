@@ -1,0 +1,99 @@
+#tabMenu {
+    background-color: black;
+    height:50px;
+    color: #fff;
+    width: 100%;
+}
+
+#tabMenu .ins {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#tabMenu > .ins > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#tabMenu > .ins > ul > li {
+    flex: 1;
+    width: 33.33%;
+    text-align: center;
+}
+
+#tabMenu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#titleWrap {
+	width:100%;
+	text-align:center;
+    padding: 65px 0 50px;
+    position:relative;
+}
+#titleWrap > .tit{
+	color: #000000;
+	font-size:38px;
+	font-weight:500;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+table td:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+table a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+table a:hover {
+    text-decoration: underline;
+}
+
+table input[type="text"], table textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+table textarea {
+    resize: vertical;
+}
+
+table input[type="submit"] {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+table input[type="submit"]:hover {
+    background-color: #45a049;
+}

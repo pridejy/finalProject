@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="RoomsDAO">
+	
+	<update id="Reservation_Room" parameterType="Rooms">
+		<![CDATA[
+			UPDATE room SET IS_RESERVED=1 WHERE ROOM_ID=#{room_id}
+		]]>
+	</update>
+	<update id="updateRoomCancellRoom">
+		<![CDATA[
+			UPDATE room SET IS_RESERVED=0 WHERE ROOM_ID=#{room_id}
+		]]>
+	</update>
+	<!-- 럭셔리  -->
+	<select id="getRooms_luxury" resultType="Rooms" >
+		<![CDATA[
+			SELECT *, 'luxury' as roomType FROM room 
+			JOIN amenities ON room.amenity_id = amenities.amenity_id
+			JOIN bed_types ON room.bed_type_id = bed_types.bed_type_id
+			JOIN occupancy_standards ON room.occupancy_standard_id = occupancy_standards.occupancy_standard_id
+			JOIN additional ON room.additional_id = additional.additional_id
+			WHERE room.room_type ='Luxury Room'
+		]]>
+	</select>
+	<select id="getDoubleBedTypes_luxury" resultType="String" >
+	    <![CDATA[
+	        SELECT bed_type_description
+	        FROM room_bed_types
+	        JOIN bed_types ON room_bed_types.bed_type_id = bed_types.bed_type_id
+	       	JOIN room ON room_bed_types.room_id = room.room_id
+	       	WHERE room.room_type = 'Luxury Room'
+	        AND bed_types.bed_type_description IN ('더블 1개', '더블 2개', '슈퍼킹+(Super King Plus) 2000mm*2100mm 1개', '슈퍼킹+(Super King Pluse) 1800mm*2100mm 2개')
+	    ]]>
+	</select>
+	<select id="getOccupancy_standards_luxury" resultType="String" >
+		<![CDATA[
+			SELECT occupancy_standard_description
+			FROM room_occupancy_standards
+			JOIN occupancy_standards ON room_occupancy_standards.occupancy_standard_id = occupancy_standards.occupancy_standard_id
+			JOIN room ON room_occupancy_standards.room_id = room.room_id
+			WHERE room.room_type = 'Luxury Room'
+			AND occupancy_standards.occupancy_standard_description IN('2인', '4인')
+		]]>
+	</select>
+	<select id="getAmenitiyTypes_luxury" resultType="String" >
+		<![CDATA[
+			SELECT amenity_name
+			FROM room_amenities
+			JOIN amenities ON room_amenities.amenity_id = amenities.amenity_id
+			JOIN room ON room_amenities.room_id = room.room_id
+        	WHERE room.room_type = 'Luxury Room'
+			AND amenities.amenity_name IN 
+			('네스프레소 머신', '무료 생수 제공', '55"FHD TV', '다리미', '구두칼', '옷솔', '다회용 욕실 어메니티', '샴푸', '컨디셔너', '바디워시', '전자렌지', '생수 2병제공 및 웰컴티 서비스', '냉장고 겸용 미니바', '고급 오리털 베개', '목욕 가운', '헤어 드라이기 비치')
+		]]>
+	</select>
+	<select id="getAdditionalTypes_luxury" resultType="String">
+		<![CDATA[
+			SELECT additional_description
+			FROM room_additional
+			JOIN additional ON room_additional.additional_id = additional.additional_id
+			JOIN room ON room_additional.room_id = room.room_id 
+			WHERE room.room_type = 'Luxury Room'
+			AND additional_description IN ('디지털TV', 'WI-FI', '미니바', '네스프레소 머신', '금연실', '샴푸')
+		]]>
+	</select>
+	<select id="getSearchRoomsList" resultType="Rooms">
+		<![CDATA[
+	        SELECT 
+	            r.room_id, r.room_type, r.room_size, r.capacity, r.price,
+	            rsvn.room_id AS 'reservationVO.room_id',
+	            rsvn.checkin_date AS 'reservationVO.checkin_date',
+	            rsvn.checkout_date AS 'reservationVO.checkout_date',
+	            rsvn.adults AS 'reservationVO.adults',
+	            rsvn.child AS 'reservationVO.child'
+	        FROM room r
+	        LEFT JOIN reservations rsvn ON r.room_id = rsvn.room_id
+	        WHERE r.is_reserved = FALSE
+	            AND (
+	                (r.capacity >= 2 AND r.capacity <= 4) OR
+	                r.capacity >= (
+	                    SELECT COALESCE(MAX(adults + child), 1)
+	                    FROM reservations
+	                    WHERE checkin_date <= #{checkout_date}
+	                    AND checkout_date >= #{checkin_date}
+	                )
+	            )
+	            AND r.room_id NOT IN (
+	                SELECT room_id
+	                FROM reservations
+	                WHERE checkin_date <= #{checkout_date}
+	                AND checkout_date >= #{checkin_date}
+	            );
+	    ]]>
+	</select>
+	
+	<select id="getAccommodation_Info" resultType="String">
+		<![CDATA[
+			SELECT content FROM accommodation_info
+		]]>
+	</select>
+	<select id="getAllSearchRoomsList" resultType="rooms">
+		<![CDATA[
+			SELECT * FROM room
+		]]>
+	</select>
+</mapper>

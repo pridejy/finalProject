@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--  ALias 설정 -->
+	<typeAliases>
+		<typeAlias type="com.finalproject.www.user.UserVO" alias="user"></typeAlias>
+		<typeAlias type="com.finalproject.www.board.BoardVO" alias="board"></typeAlias>
+		<typeAlias type="com.finalproject.www.faqBoard.faqBoardVO" alias="faqBoard"></typeAlias>
+		<typeAlias type="com.finalproject.www.rooms.RoomsVO" alias="Rooms"></typeAlias>
+	 	<typeAlias type="com.finalproject.www.reservation.ReservationVO" alias="Reservation"></typeAlias>
+	 	<typeAlias type="com.finalproject.www.manager.ManagerVO" alias="manager"></typeAlias>
+	</typeAliases>
+	
+	<typeHandlers>
+	  	<typeHandler handler="org.apache.ibatis.type.LocalDateTypeHandler" />
+	</typeHandlers>
+	<!--  sql Mapper 설정 -->
+	<mappers>
+		<mapper resource="mappings/User-mapping.xml" />
+		<mapper resource="mappings/board-mapping.xml"/>
+		<mapper resource="mappings/faqBoard-mapping.xml"/>
+		<mapper resource="mappings/RoomsInformation.mapping.xml"/>
+		<mapper resource="mappings/JuniorInformation.mapping.xml"/>
+		<mapper resource="mappings/CornerInformation.mapping.xml"/>
+		<mapper resource="mappings/Reservation-mapping.xml"/>
+		<mapper resource="mappings/Manager-mapping.xml"/>
+	</mappers>
+	
+
+</configuration>

@@ -1,0 +1,137 @@
+.w1200{
+	width:1200px;
+	margin:0 auto;
+}
+.board-wrap{
+	margin-bottom:70px;
+}
+#titleWrap{
+	padding: 65px 0 20px;
+}
+.board-title{
+	font-size:38px;
+	font-weight:bold;
+	margin-bottom:10px;
+}
+.bookArea-wrap * {
+	box-sizing: border-box;
+}
+.bookArea-wrap > #bookArea{
+	width:1200px;
+	margin:0 auto;
+	z-index:96;
+	position:relative;
+	background :#fff;
+}
+.grid-wrap {
+    display: flex;
+}
+
+.grid-cell {
+    flex: 2;
+    box-sizing: border-box;
+}
+
+.grid-cell.w300 {
+    flex:1;
+    margin-top:50px;
+}
+/*요청사항*/
+.textarea textarea{
+	width:50%;
+}
+
+/* 예약 정보 입력 스타일 */
+#rsvnStep2{
+	margin-top:50px;
+}
+.rsvn-wrap {
+    border-top: 3px solid #26252b;
+    margin-bottom: 40px;
+    padding-top: 10px;
+}
+
+.rsvn-list {
+    padding: 20px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 0;
+}
+
+.rsvn-content {
+    display: flex;
+    width: 100%;
+}
+
+.cell {
+    padding: 0 20px;
+    border-right: 1px solid #eaeaea;
+}
+
+.form-wrap h5 {
+    font-size: 17px;
+    color: #323232;
+    text-align: left;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.form-wrap table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.form-wrap th, .form-wrap td {
+    padding: 10px;
+    border: 1px solid #dddddd;
+    text-align: center;
+}
+
+/* 예약 정보 박스 스타일 */
+.rsvnInfo {
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.bt_reset {
+    background-color: #ea072d;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.contents {
+    border: 1px solid #eaeaea;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* 기타 스타일 */
+.bt-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.bt-wrap ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.bt-wrap li {
+    margin-left: 10px;
+}
+
+/* 반응형 스타일링 */
+@media only screen and (max-width: 768px) {
+    .grid-wrap {
+        flex-direction: column;
+    }
+
+    .grid-cell, .grid-cell.w300 {
+        width: 100%;
+    }
+}
